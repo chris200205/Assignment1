@@ -31,8 +31,6 @@ if running == True:
         # Creating discount calculations depending on what applies from inputs.
         if tud == True and senior == False:
             totalDiscount = totalPrice - (totalPrice * 0.04)
-        elif tud == False and senior == False:
-            totalDiscount = totalPrice - (totalPrice * 0)
         elif tud == True and senior == True:
             totalDiscount = totalPrice - (totalPrice * 0.04)
             totalDiscount = totalDiscount - (totalDiscount * 0.11)
