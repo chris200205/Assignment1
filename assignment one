@@ -1,0 +1,29 @@
+# First assignment of the COMPSCI 1026A course
+offPeak = 0.085
+onPeak = 0.176
+midPeak = 0.119
+
+# User input of KWH used in home to determine cost of peak time.
+kwhUsed = (input("How many KWH are you using?: "))
+if kwhUsed == int or float:
+    kwhUsed = "KWH: " + kwhUsed
+    print(kwhUsed)
+else:  # Exits program if a string is input.
+    exit("Please enter a number")
+
+# User inputs peak time to determine the total cost of their KWH with peak times.
+peakChoice = (input(" (1) Off Peak: 7pm-7am \n (2) Peak: 7am-11am and 5pm-7pm \n (3) Mid Peak: 11am-5pm \n Choose a peak time (1/2/3): "))
+if peakChoice == 1:
+    peakChoice = "Off Peak"
+    peakPrice = 0.085
+elif peakChoice == 2:
+    peakChoice = "Peak"
+    peakPrice = 0.176
+else:
+    peakChoice == 3
+    peakChoice = "Mid Peak"
+    peakPrice = 0.119
+
+# Creating variable "total1" in order to set-up print line for peakPrice and kwhUsed.
+total1 = kwhUsed * peakPrice
+print(peakChoice + "price for" , kwhUsed , "KWH is: $%.2f" %total1)
