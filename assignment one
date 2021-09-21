@@ -1,29 +1,43 @@
 # First assignment of the COMPSCI 1026A course
-offPeak = 0.085
-onPeak = 0.176
-midPeak = 0.119
+total = float
+discount = float
+tax = 0.13
+senior = False
+running = True
+tud = False
 
-# User input of KWH used in home to determine cost of peak time.
-kwhUsed = (input("How many KWH are you using?: "))
-if kwhUsed == int or float:
-    kwhUsed = "KWH: " + kwhUsed
-    print(kwhUsed)
-else:  # Exits program if a string is input.
-    exit("Please enter a number")
+# If statement for Boolean for the exit program.
+if running == True:
+    kwhOff = (input("How many KWH are you using Off Peak?: "))
+    if kwhOff != "0":  # If statement for exit program if the first input is "0".
+        kwhOn = (input("How many KWH are you using On Peak?: "))
+        kwhMid = (input("How many KWH are you using Mid Peak?: "))
+        senior = (input("Are you a senior? (Y,y,N,n): "))
+        if senior == "y" or "Y":
+            senior = True
+        offPrice = float(kwhOff) * 0.085
+        onPrice = float(kwhOn) * 0.176
+        midPrice = float(kwhMid) * 0.119
+        totalKwh = kwhOff + kwhOn + kwhMid
 
-# User inputs peak time to determine the total cost of their KWH with peak times.
-peakChoice = (input(" (1) Off Peak: 7pm-7am \n (2) Peak: 7am-11am and 5pm-7pm \n (3) Mid Peak: 11am-5pm \n Choose a peak time (1/2/3): "))
-if peakChoice == 1:
-    peakChoice = "Off Peak"
-    peakPrice = 0.085
-elif peakChoice == 2:
-    peakChoice = "Peak"
-    peakPrice = 0.176
-else:
-    peakChoice == 3
-    peakChoice = "Mid Peak"
-    peakPrice = 0.119
+        # Checking if the total KWH matches discounts.
+        if totalKwh < "400":
+            tud = True
+        if kwhOn < "150" and tud == False:
+            onPrice = onPrice - (onPrice * 0.05)
+        totalPrice = offPrice + onPrice + midPrice
+        totalDiscount = totalPrice
 
-# Creating variable "total1" in order to set-up print line for peakPrice and kwhUsed.
-total1 = kwhUsed * peakPrice
-print(peakChoice + "price for" , kwhUsed , "KWH is: $%.2f" %total1)
+        # Creating discount calculations depending on what applies from inputs.
+        if tud == True and senior == False:
+            totalDiscount = totalPrice - (totalPrice * 0.04)
+        elif tud == False and senior == False:
+            totalDiscount = totalPrice - (totalPrice * 0)
+        elif tud == True and senior == True:
+            totalDiscount = totalPrice - (totalPrice * 0.04)
+            totalDiscount = totalDiscount - (totalDiscount * 0.11)
+        elif tud == False and senior == True:
+            totalDiscount = totalPrice - (totalPrice * 0.11)
+
+finalPrice = totalDiscount + (totalDiscount * tax)
+print("Total electricity cost: $%.2f" %finalPrice)
