@@ -47,3 +47,4 @@ while running == True:
         print("Electricity cost: $%.2f" %finalPrice)
     else:
         running = False
+# 
