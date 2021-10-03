@@ -1,13 +1,12 @@
 # First assignment of the COMPSCI 1026A course
 total = float
 discount = float
-tax = 0.13
-senior = False
 running = True
-tud = False
 
 # If statement for Boolean for the exit program.
-if running == True:
+while running == True:
+    senior = False
+    tud = False
     kwhOff = (input("How many KWH are you using Off Peak?: "))
     if kwhOff != "0":  # If statement for exit program if the first input is "0".
         kwhOn = (input("How many KWH are you using On Peak?: "))
@@ -15,6 +14,8 @@ if running == True:
         senior = (input("Are you a senior? (Y,y,N,n): "))
         if senior == "y" or "Y":
             senior = True
+        else:
+            senior = False
         offPrice = float(kwhOff) * 0.085
         onPrice = float(kwhOn) * 0.176
         midPrice = float(kwhMid) * 0.119
@@ -23,6 +24,8 @@ if running == True:
         # Checking if the total KWH matches discounts.
         if totalKwh < "400":
             tud = True
+        else:
+            tud = False
         if kwhOn < "150" and tud == False:
             onPrice = onPrice - (onPrice * 0.05)
         totalPrice = offPrice + onPrice + midPrice
@@ -36,6 +39,11 @@ if running == True:
             totalDiscount = totalDiscount - (totalDiscount * 0.11)
         elif tud == False and senior == True:
             totalDiscount = totalPrice - (totalPrice * 0.11)
+        else:
+            totalDiscount = totalDiscount
 
-finalPrice = totalDiscount + (totalDiscount * tax)
-print("Total electricity cost: $%.2f" %finalPrice)
+        # Adding tax to the final answer.
+        finalPrice = totalDiscount * 1.13
+        print("Electricity cost: $%.2f" %finalPrice)
+    else:
+        running = False
