@@ -6,7 +6,7 @@ running = True
 # If statement for Boolean for the exit program.
 while running == True:
     senior = False
-    tud = False
+    usageDiscount = False
     kwhOff = float((input("Enter kwh during Off Peak?: ")))
     if kwhOff != 0:  # If statement for exit program if the first input is "0".
         kwhOn = float((input("Enter kwh during On Peak?: ")))
@@ -26,21 +26,21 @@ while running == True:
 
         # Checking if the total KWH matches discounts.
         if totalKwh < 400:
-            tud = True
+            usageDiscount = True
         if kwhOn < 150.0 and tud == False:
             onPrice = onPrice - (onPrice * 0.05)
         totalPrice = offPrice + onPrice + midPrice
         totalDiscount = totalPrice
 
         # Creating discount calculations depending on what applies from inputs.
-        if tud == True and senior == False:
+        if usageDiscount == True and senior == False:
             totalDiscount = totalPrice - (totalPrice * 0.04)
 
-        elif tud == True and senior == True:
+        elif usageDiscount == True and senior == True:
             totalDiscount = totalPrice - (totalPrice * 0.04)
             totalDiscount = totalDiscount - (totalDiscount * 0.11)
 
-        elif ((tud == False) and (senior == True)):
+        elif ((usageDiscount == False) and (senior == True)):
             totalDiscount = totalPrice - (totalPrice * 0.11)
 
         # Adding tax to the final answer.
