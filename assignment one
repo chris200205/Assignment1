@@ -7,26 +7,27 @@ running = True
 while running == True:
     senior = False
     tud = False
-    kwhOff = (input("How many KWH are you using Off Peak?: "))
-    if kwhOff != "0":  # If statement for exit program if the first input is "0".
-        kwhOn = (input("How many KWH are you using On Peak?: "))
-        kwhMid = (input("How many KWH are you using Mid Peak?: "))
-        senior = (input("Are you a senior? (Y,y,N,n): "))
-        if senior == "y" or "Y":
+    kwhOff = float((input("Enter kwh during Off Peak?: ")))
+    if kwhOff != 0:  # If statement for exit program if the first input is "0".
+        kwhOn = float((input("Enter kwh during On Peak?: ")))
+        kwhMid = float((input("Enter kwh during Mid Peak?: ")))
+        senior = (input("Is owner senior? (Y,y,N,n): "))
+        if senior == "y" or senior == "Y":
             senior = True
         else:
             senior = False
+
         offPrice = float(kwhOff) * 0.085
         onPrice = float(kwhOn) * 0.176
         midPrice = float(kwhMid) * 0.119
+
         totalKwh = kwhOff + kwhOn + kwhMid
+        float(totalKwh)
 
         # Checking if the total KWH matches discounts.
-        if totalKwh < "400":
+        if totalKwh < 400:
             tud = True
-        else:
-            tud = False
-        if kwhOn < "150" and tud == False:
+        if kwhOn < 150.0 and tud == False:
             onPrice = onPrice - (onPrice * 0.05)
         totalPrice = offPrice + onPrice + midPrice
         totalDiscount = totalPrice
@@ -34,17 +35,17 @@ while running == True:
         # Creating discount calculations depending on what applies from inputs.
         if tud == True and senior == False:
             totalDiscount = totalPrice - (totalPrice * 0.04)
+
         elif tud == True and senior == True:
             totalDiscount = totalPrice - (totalPrice * 0.04)
             totalDiscount = totalDiscount - (totalDiscount * 0.11)
-        elif tud == False and senior == True:
+
+        elif ((tud == False) and (senior == True)):
             totalDiscount = totalPrice - (totalPrice * 0.11)
-        else:
-            totalDiscount = totalDiscount
 
         # Adding tax to the final answer.
         finalPrice = totalDiscount * 1.13
         print("Electricity cost: $%.2f" %finalPrice)
+        print()
     else:
         running = False
-# 
